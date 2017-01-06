@@ -19,7 +19,7 @@ var TutorialComponent = (function () {
     TutorialComponent = __decorate([
         core_1.Component({
             selector: "my-tutorial",
-            template: "\n    <h2>I am a TutorialComponent</h2> \n    <button (click)=\"OnClick(name.value)\"> Click me</button>\n    <input type=\"text\" #name />\n    "
+            template: "\n    <h2>I am a TutorialComponent</h2> \n    <input type=\"text\" [(ngModel)]=\"fname\" />\n        <input type=\"text\" [(ngModel)]=\"lname\" />\n<p>Full name: <strong>{{fname}} {{lname}}</strong></p>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], TutorialComponent);

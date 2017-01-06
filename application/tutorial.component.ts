@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
     selector: "my-tutorial",
     template: `
     <h2>I am a TutorialComponent</h2> 
-    <button (click)="OnClick(name.value)"> Click me</button>
-    <input type="text" #name />
+    <input type="text" [(ngModel)]="fname" />
+        <input type="text" [(ngModel)]="lname" />
+<p>Full name: <strong>{{fname}} {{lname}}</strong></p>
     `
 })
 
