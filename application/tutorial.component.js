@@ -12,6 +12,9 @@ var core_1 = require('@angular/core');
 var TutorialComponent = (function () {
     function TutorialComponent() {
         this.title = "This is Angular 2 TutorialComponent";
+        this.showLineIf = false;
+        this.color = 'blue';
+        this.colors = ['red', 'green', 'blue'];
     }
     TutorialComponent.prototype.OnClick = function (value) {
         console.log(value);
@@ -19,7 +22,7 @@ var TutorialComponent = (function () {
     TutorialComponent = __decorate([
         core_1.Component({
             selector: "my-tutorial",
-            template: "\n    <h2>I am a TutorialComponent</h2> \n    <input type=\"text\" [(ngModel)]=\"fname\" />\n        <input type=\"text\" [(ngModel)]=\"lname\" />\n<p>Full name: <strong>{{fname}} {{lname}}</strong></p>\n    "
+            template: "\n    <h2>{{title}}</h2> \n    <h3 *ngIf=\"showLineIf\">This is ngIf directive line.</h3>\n    <div [ngSwitch]=\"color\">\n        <p *ngSwitchCase=\"'red'\">This line is red</p>\n        <p *ngSwitchCase=\"'blue'\">This line is blue</p>\n        <p *ngSwitchCase=\"'green'\">This line is green</p>\n        <p *ngSwitchDefault>Invalid color</p>\n\n\n    </div>\n    <ul>\n        <li *ngFor=\"let c of colors\">This is color {{c}}</li>\n    </ul>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], TutorialComponent);
