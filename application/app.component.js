@@ -12,14 +12,14 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'TD chanel';
-        this._10percent = 0.1;
-        this.today = Date.now();
-        this.e = 2.83912391263127;
     }
+    AppComponent.prototype.onSubmit = function (value) {
+        console.log(value);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{title | uppercase}}</h1>\n    <p>Date: {{today | date:'fullDate' | uppercase}}</p>\n        <p>Percent: {{_10percent | percent}}</p>\n        <p>e: {{e | number:'1.2'}}</p>\n        \n        <p>Binh phuong {{2|binhPhuong:4}}</p>\n\n    <my-tutorial></my-tutorial>\n    ",
+            templateUrl: 'application/app.component.html'
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
