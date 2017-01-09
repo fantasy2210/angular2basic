@@ -21,20 +21,25 @@ var core_1 = require('@angular/core');
 var TutorialComponent = (function () {
     function TutorialComponent() {
         this.title = "This is Angular 2 TutorialComponent";
-        this.cone = false;
-        this.ctwo = true;
+        this.onVote = new core_1.EventEmitter();
+        this.voted = false;
     }
-    TutorialComponent.prototype.toggle = function () {
-        this.cone = !this.cone;
-        this.ctwo = !this.ctwo;
+    TutorialComponent.prototype.vote = function (agree) {
+        this.voted = true;
+        this.onVote.emit(agree);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], TutorialComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TutorialComponent.prototype, "onVote", void 0);
     TutorialComponent = __decorate([
         core_1.Component({
             selector: "my-tutorial",
-            template: "\n    <h2>{{title}}</h2>    \n    <p [ngClass]=\"{classOne:cone, classTwo:ctwo}\">This is a result of ngClass</p>\n    <button (click)=\"toggle()\">Change color</button>\n   \n    ",
-            styles: [
-                "\n            .classOne{\n                color:red\n            }\n            \n            .classTwo{\n                color:blue\n            }\n        "
-            ]
+            template: "\n    <h2>{{title}}</h2>    \n    <p>Child component: {{name}}</p>\n    <button [disabled]=\"voted\" (click)=\"vote(true)\">Agree</button>\n    <button [disabled]=\"voted\" (click)=\"vote(false)\">Disgree</button>\n    Checked:  {{voted}}\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], TutorialComponent);

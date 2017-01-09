@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 /*
  * ngClass duoc dung de ap dung class cho 1 element dua vao gia tri cua bien
  * cu phap [ngClass]="{ten_class_1:ten_bien_1,ten_class_2:ten_bien_2,...}"
@@ -12,29 +12,26 @@ import { Component } from '@angular/core';
     selector: "my-tutorial",
     template: `
     <h2>{{title}}</h2>    
-    <p [ngClass]="{classOne:cone, classTwo:ctwo}">This is a result of ngClass</p>
-    <button (click)="toggle()">Change color</button>
-   
-    `,
-    styles: [
-        `
-            .classOne{
-                color:red
-            }
-            
-            .classTwo{
-                color:blue
-            }
-        `
-    ]
+    <p>Child component: {{name}}</p>
+    <button [disabled]="voted" (click)="vote(true)">Agree</button>
+    <button [disabled]="voted" (click)="vote(false)">Disgree</button>
+    Checked:  {{voted}}
+    `
 })
 
 export class TutorialComponent {
     title = "This is Angular 2 TutorialComponent";
-    cone = false;
-    ctwo = true;
-    toggle() {
-        this.cone = !this.cone;
-        this.ctwo = !this.ctwo;
+
+    @Input()
+    name: string;
+
+    @Output()
+    onVote = new EventEmitter<boolean>();
+
+    voted: boolean = false;
+
+    vote(agree: boolean) {
+        this.voted = true;
+        this.onVote.emit(agree);
     }
 }
