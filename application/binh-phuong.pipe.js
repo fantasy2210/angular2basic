@@ -8,22 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'TD chanel';
-        this._10percent = 0.1;
-        this.today = Date.now();
-        this.e = 2.83912391263127;
+var BinhPhuongPipe = (function () {
+    function BinhPhuongPipe() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "\n    <h1>{{title | uppercase}}</h1>\n    <p>Date: {{today | date:'fullDate' | uppercase}}</p>\n        <p>Percent: {{_10percent | percent}}</p>\n        <p>e: {{e | number:'1.2'}}</p>\n        \n        <p>Binh phuong {{2|binhPhuong:4}}</p>\n\n    <my-tutorial></my-tutorial>\n    ",
-        }), 
+    BinhPhuongPipe.prototype.transform = function (value, exportnent) {
+        var exp = parseFloat(exportnent);
+        return Math.pow(value, isNaN(exp) ? 1 : exp);
+    };
+    BinhPhuongPipe = __decorate([
+        core_1.Pipe({ name: 'binhPhuong' }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], BinhPhuongPipe);
+    return BinhPhuongPipe;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.BinhPhuongPipe = BinhPhuongPipe;
+//# sourceMappingURL=binh-phuong.pipe.js.map

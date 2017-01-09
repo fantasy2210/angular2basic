@@ -6,9 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TutorialComponent } from './tutorial.component';
 
+import { BinhPhuongPipe } from './binh-phuong.pipe';
+
 @NgModule({
     imports: [BrowserModule, FormsModule],
-    declarations: [AppComponent, TutorialComponent],
+    declarations: [AppComponent, TutorialComponent,BinhPhuongPipe],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
