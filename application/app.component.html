@@ -1,29 +1,64 @@
 <h1>User form</h1>
 
-<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" class="form-horizontal">
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" class="form-control" name="name" ngModel>
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" class="form-control" name="email" ngModel>
-    </div>
-    <div ngModelGroup="address">
-        <div class="form-group">
-            <label>Street</label>
-            <input type="text" class="form-control" name="street" ngModel>
-        </div>
-        <div class="form-group">
-            <label>City</label>
-            <input type="text" class="form-control" name="city" ngModel>
-        </div>
-        <div class="form-group">
-            <label>Postal Code</label>
-            <input type="text" class="form-control" name="postalCode" ngModel>
-        </div>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)"
+	class="form-horizontal">
+	<div class="form-group">
+		<label>Name</label> <input type="text" class="form-control" required
+			name="name" #name="ngModel" [minlength]="10" [maxlength]="20" ngModel>
+		<div *ngIf="name.errors && (name.dirty || name.touched)"
+			class="alert alert-danger">
+			<div [hidden]="!name.errors.required">Trường này bắt buộc</div>
+			<div [hidden]="!name.errors.minlength">Ít nhất 10 ký tự</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Email</label> <input type="email"
+			pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+			class="form-control" required name="email" ngModel #email="ngModel">
+		<div *ngIf="email.errors && (email.dirty || email.touched)"
+			class="alert alert-danger">
+			<div [hidden]="!email.errors.required">Trường này bắt buộc</div>
+			<div [hidden]="!email.errors.pattern">Không đúng định dạng
+				email</div>
+		</div>
+	</div>
 
-    </div>
+	<div class="form-group">
+		<label>Street</label> <input type="text" class="form-control"
+			required="required" name="street" #street="ngModel" ngModel>
+		<div *ngIf="street.errors && (street.dirty || street.touched)"
+			class="alert alert-danger">
+			<div [hidden]="!street.errors.required">Trường này bắt buộc</div>
 
-    <button class="btn btn-primary" type="submit">Submit</button>
+		</div>
+	</div>
+	<div class="form-group">
+		<label>City</label> <select class="form-control" required="required"
+			name="selectedCity" #selectedCity="ngModel" ngModel>
+			<option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+		</select>
+		<div
+			*ngIf="selectedCity.errors && (selectedCity.dirty || selectedCity.touched)"
+			class="alert alert-danger">
+			<div [hidden]="!selectedCity.errors.required">Trường này bắt
+				buộc</div>
+
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Postal Code</label> <input type="text" pattern="^[1-9][0-9]{4}"
+			class="form-control" name="postalCode" [required]
+			#postalCode="ngModel" ngModel>
+		<div
+			*ngIf="postalCode.errors && (postalCode.dirty || postalCode.touched)"
+			class="alert alert-danger">
+			<div [hidden]="!postalCode.errors.pattern">Phải có 5 ký tự số</div>
+
+		</div>
+	</div>
+
+
+
+	<button class="btn btn-primary" [disabled]="!userForm.valid"
+		type="submit">Submit</button>
 </form>
