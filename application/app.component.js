@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'TD chanel';
+        this.cities = [{ id: 1, name: 'Việt Nam' }, { id: 2, name: 'Thái Lan' }];
     }
     AppComponent.prototype.onSubmit = function (value) {
         console.log(value);
@@ -19,7 +20,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: 'application/app.component.html'
+            templateUrl: 'application/app.component.html',
+            styleUrls: ['application/app.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
