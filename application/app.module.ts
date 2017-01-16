@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {EmployeeListComponent} from './employee.component';
 import { AppComponent } from './app.component';
-
+import {HttpModule} from '@angular/http';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule],
+    imports: [BrowserModule, FormsModule,HttpModule],
     declarations: [AppComponent,EmployeeListComponent],
     bootstrap: [AppComponent]
 })

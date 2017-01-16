@@ -14,21 +14,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * and open the template in the editor.
  */
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
 var EmployeeService = (function () {
-    function EmployeeService() {
+    function EmployeeService(_http) {
+        this._http = _http;
+        this.apiUrl = "http://587c8fb706972c1200b215ff.mockapi.io/api/v1/employees";
     }
+    ;
     EmployeeService.prototype.GetList = function () {
-        var employees = [
-            { id: 1, name: 'Nguyễn Thái TOàn' },
-            { id: 2, name: 'Lê Thị Đẹp' },
-            { id: 3, name: 'Nguyễn Thảo My' },
-            { id: 3, name: 'Nguyễn Phúc Lâm' }
-        ];
-        return employees;
+        return this._http.get(this.apiUrl).map(function (response) { return response.json(); });
     };
     EmployeeService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], EmployeeService);
     return EmployeeService;
 }());

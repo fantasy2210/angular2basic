@@ -4,17 +4,15 @@
  * and open the template in the editor.
  */
 import {Injectable} from '@angular/core';
-
+import {Http,Response} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 @Injectable()
 
 export class EmployeeService {
-    GetList(): any[] {
-        let employees = [
-            {id: 1, name: 'Nguyễn Thái TOàn'},
-            {id: 2, name: 'Lê Thị Đẹp'},
-            {id: 3, name: 'Nguyễn Thảo My'},
-            {id: 3, name: 'Nguyễn Phúc Lâm'}
-            ];
-        return employees;
+    private apiUrl="http://587c8fb706972c1200b215ff.mockapi.io/api/v1/employees";
+constructor(private _http: Http){};
+    GetList(): Observable<any[]> {
+        return this._http.get(this.apiUrl).map((response:Response)=>response.json());
     }
 }
